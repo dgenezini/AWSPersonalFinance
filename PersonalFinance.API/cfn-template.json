@@ -1,19 +1,120 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Resources for PersonalFinance.API",
+    "Description": "Resources for PersonalFinance.API\n",
     "Resources": {
-        "SourceBucket": {
-            "Type": "AWS::S3::Bucket",
+        "DynamoDBCategoryTable": {
+            "Type": "AWS::DynamoDB::Table",
             "Properties": {
-                "AccessControl": "BucketOwnerFullControl"
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "CategoriaId",
+                        "AttributeType": "S"
+                    }
+                ],
+                "BillingMode": "PROVISIONED",
+                "KeySchema": [
+                    {
+                        "AttributeName": "CategoriaId",
+                        "KeyType": "HASH"
+                    }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                },
+                "TableName": "Categoria"
+            }
+        },
+        "DynamoDBAccountTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "ContaId",
+                        "AttributeType": "S"
+                    }
+                ],
+                "BillingMode": "PROVISIONED",
+                "KeySchema": [
+                    {
+                        "AttributeName": "ContaId",
+                        "KeyType": "HASH"
+                    }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                },
+                "TableName": "Conta"
+            }
+        },
+        "DynamoDBGeneralTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "PK",
+                        "AttributeType": "S"
+                    },
+                    {
+                        "AttributeName": "SK",
+                        "AttributeType": "S"
+                    }
+                ],
+                "BillingMode": "PROVISIONED",
+                "KeySchema": [
+                    {
+                        "AttributeName": "PK",
+                        "KeyType": "HASH"
+                    },
+                    {
+                        "AttributeName": "SK",
+                        "KeyType": "RANGE"
+                    }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": 5,
+                    "WriteCapacityUnits": 5
+                },
+                "TableName": "Geral"
+            }
+        },
+        "PersonalFinanceLambdaAPI": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "Handler": "PersonalFinance.LambdaAPI::PersonalFinance.LambdaAPI.LambdaEntryPoint::FunctionHandlerAsync",
+                "Runtime": "dotnetcore3.1",
+                "CodeUri": "",
+                "MemorySize": 128,
+                "Timeout": 30,
+                "Role": null,
+                "Policies": [
+                    "AWSLambda_FullAccess"
+                ],
+                "Events": {
+                    "ProxyResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/{proxy+}",
+                            "Method": "ANY"
+                        }
+                    },
+                    "RootResource": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/",
+                            "Method": "ANY"
+                        }
+                    }
+                }
             }
         }
     },
     "Outputs": {
-      "BucketName": {
-        "Description": "Bucket name",
-        "Value": { 
-            "Ref" : "SourceBucket" 
+      "ApiURL": {
+        "Description": "API endpoint URL",
+        "Value": {
+          "Fn::Sub": "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
         }
       }
     }
