@@ -1,0 +1,40 @@
+﻿@page "/Contas"
+
+<h1>Contas</h1>
+
+@if (Contas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="btn-group pull-right" role="group" aria-label="...">
+        <a href="Contas/Incluir?ReturnUrl=@ReturnUrl" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Incluir
+        </a>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Final do Cartão</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Conta in Contas)
+            {
+                <tr>
+                    <td>@Conta.Descricao</td>
+                    <td>@Conta.FinalCartao</td>
+                    <td><a href="Contas/Editar/@Conta.ContaId?ReturnUrl=@ReturnUrl">Editar</a></td>
+                    <td><a href="Contas/Excluir/@Conta.ContaId?ReturnUrl=@ReturnUrl">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

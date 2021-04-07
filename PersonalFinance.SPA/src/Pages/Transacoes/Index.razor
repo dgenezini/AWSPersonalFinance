@@ -1,0 +1,58 @@
+﻿@page "/Transacoes"
+
+<h1>Transações</h1>
+
+@if (Transacoes == null)
+{
+    <div class="loader"></div>
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="btn-group pull-right" role="group" aria-label="...">
+        <a href="Transacoes/Incluir?ReturnUrl=@ReturnUrl" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Incluir
+        </a>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dt. Compra</th>
+                <th>Valor (R$)</th>
+                <th>Conta Origem</th>
+                <th>Conta Destino</th>
+                <th>Categoria</th>
+                <th>Descrição/Local</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Transacao in Transacoes)
+            {
+                <tr>
+                    <td>@Transacao.DataHora.ToString("dd/MM/yyyy")</td>
+                    <td>@Transacao.Valor.ToString("R$ #,##0.00")</td>
+                    <td>@Transacao.ContaOrigem?.Descricao</td>
+                    <td>@Transacao.ContaDestino?.Descricao</td>
+                    <td>@Transacao.Categoria?.Descricao</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(Transacao.Descricao))
+                        {
+                            <text>@Transacao.Descricao</text>
+                        }
+                        else
+                        {
+                            <text>@Transacao.LocalPagto</text>
+                        }
+                    </td>
+                    <td><a href="Transacoes/Editar/@Transacao.TransacaoId?ReturnUrl=@ReturnUrl">Editar</a></td>
+                    <td><a href="Transacoes/Excluir/@Transacao.TransacaoId?ReturnUrl=@ReturnUrl">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

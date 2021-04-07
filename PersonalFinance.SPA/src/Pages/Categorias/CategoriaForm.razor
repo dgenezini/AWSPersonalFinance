@@ -1,0 +1,42 @@
+@if (Categoria == null)
+{
+    <div class="loader"></div>
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="@Categoria" OnValidSubmit="@OnValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @BotaoDescricao
+            </button>
+        </div>
+
+        <br />
+        <br />
+
+        <div asp-validation-summary="All"></div>
+
+        <fieldset disabled="@IsReadOnly">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <label>Descrição</label>
+                            <input @bind="@Categoria.Descricao" class="form-control" />
+                            <ValidationMessage For="@(() => Categoria.Descricao)" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>Transferência</label>
+                            <input @bind="@Categoria.IsTransferencia" class="form-control" />
+                            <ValidationMessage For="@(() => Categoria.IsTransferencia)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </EditForm>
+}

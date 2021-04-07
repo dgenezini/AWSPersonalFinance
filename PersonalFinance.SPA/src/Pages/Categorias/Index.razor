@@ -1,0 +1,40 @@
+﻿@page "/Categorias"
+
+<h1>Categorias</h1>
+
+@if (Categorias == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="btn-group pull-right" role="group" aria-label="...">
+        <a href="Categorias/Incluir?ReturnUrl=@ReturnUrl" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Incluir
+        </a>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Transferência</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Categoria in Categorias)
+            {
+                <tr>
+                    <td>@Categoria.Descricao</td>
+                    <td>@Categoria.IsTransferencia</td>
+                    <td><a href="Categorias/Editar/@Categoria.CategoriaId?ReturnUrl=@ReturnUrl">Editar</a></td>
+                    <td><a href="Categorias/Excluir/@Categoria.CategoriaId?ReturnUrl=@ReturnUrl">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

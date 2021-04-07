@@ -1,0 +1,6 @@
+@page "/Contas/Excluir/{ContaId}"
+
+<h1>Excluir Conta</h1>
+
+<ContaForm Conta="@Conta" BotaoDescricao="Excluir"
+            IsReadOnly="true" OnValidSubmit="@HandleValidSubmitAsync" />

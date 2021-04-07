@@ -1,0 +1,105 @@
+﻿@if (Transacao == null)
+{
+    <div class="loader"></div>
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="@Transacao" OnValidSubmit="@OnValidSubmit">
+        <DataAnnotationsValidator />
+
+        <div class="btn-group pull-right" role="group" aria-label="...">
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> @BotaoDescricao
+            </button>
+        </div>
+
+        <br />
+        <br />
+
+        <div asp-validation-summary="All"></div>
+
+        <fieldset disabled="@IsReadOnly">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>Data</label>
+                            <input @bind="@Transacao.DataHora" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.DataHora)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Valor</label>
+                            <input @bind="@Transacao.Valor" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.Valor)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Cotação</label>
+                            <input @bind="@Transacao.Cotacao" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.Cotacao)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Moeda</label>
+                            <input @bind="@Transacao.Moeda" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.Moeda)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Conta de Origem</label>
+
+                            <select @bind="@Transacao.ContaOrigemId" class="form-control">
+                                @foreach (var item in ListContas)
+                                {
+                                    <option value="@item.ContaId">@item.Descricao</option>
+                                }
+                            </select>
+
+                            <ValidationMessage For="@(() => Transacao.ContaOrigemId)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Conta de Destino</label>
+
+                            <select @bind="@Transacao.ContaDestinoId" class="form-control">
+                                @foreach (var item in ListContas)
+                                {
+                                    <option value="@item.ContaId">@item.Descricao</option>
+                                }
+                            </select>
+
+                            <ValidationMessage For="@(() => Transacao.ContaDestinoId)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Categoria</label>
+
+                            <select @bind="@Transacao.CategoriaId" class="form-control">
+                                @foreach (var item in ListCategorias)
+                                {
+                                    <option value="@item.CategoriaId">@item.Descricao</option>
+                                }
+                            </select>
+
+                            <ValidationMessage For="@(() => Transacao.CategoriaId)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Local de Pagto.</label>
+                            <input @bind="@Transacao.LocalPagto" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.LocalPagto)" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Descrição</label>
+                            <input @bind="@Transacao.Descricao" class="form-control" />
+                            <ValidationMessage For="@(() => Transacao.Descricao)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </EditForm>
+}

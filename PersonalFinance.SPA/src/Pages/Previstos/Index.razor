@@ -1,0 +1,44 @@
+﻿@page "/Previstos"
+
+<h1>Previstos</h1>
+
+@if (Previstos == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="btn-group pull-right" role="group" aria-label="...">
+        <a href="Previstos/Incluir?ReturnUrl=@ReturnUrl" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Incluir
+        </a>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mês</th>
+                <th>Ano</th>
+                <th>Categoria</th>
+                <th>Valor (R$)</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Previsto in Previstos)
+            {
+                <tr>
+                    <td>@Previsto.Mes</td>
+                    <td>@Previsto.Ano</td>
+                    <td>@Previsto.CategoriaId</td>
+                    <td>@Previsto.Valor.ToString("R$ #,##0.00")</td>
+                    <td><a href="Previstos/Editar/@Previsto.PrevistoId?ReturnUrl=@ReturnUrl">Editar</a></td>
+                    <td><a href="Previstos/Excluir/@Previsto.PrevistoId?ReturnUrl=@ReturnUrl">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

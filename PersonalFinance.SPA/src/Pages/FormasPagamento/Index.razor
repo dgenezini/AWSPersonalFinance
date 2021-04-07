@@ -1,0 +1,40 @@
+@page "/FormasPagamento"
+
+<h1>Formas de Pagamento</h1>
+
+@if (FormasPagamento == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="btn-group pull-right" role="group" aria-label="...">
+        <a href="FormasPagto/Incluir" class="btn btn-primary">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Incluir
+        </a>
+    </div>
+
+    <br />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Final do Cartão</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var FormaPagamento in FormasPagamento)
+            {
+                <tr>
+                    <td>@FormaPagamento.Descricao</td>
+                    <td>@FormaPagamento.FinalCartao</td>
+                    <td><a href="FormasPagto/Editar/@FormaPagamento.FormaPagamentoId">Editar</a></td>
+                    <td><a href="FormasPagto/Excluir/@FormaPagamento.FormaPagamentoId">Excluir</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
