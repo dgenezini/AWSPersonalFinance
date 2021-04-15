@@ -1,8 +1,18 @@
-- Cloudformation/SAM?
-- Github actions
-codepipeline com cloudformation
-sonarlint
-aws secret manager
-separar api
-configurar contas
-separar fontes
+- agregar dados por evento
+- config files de parametros
+- sonarlint
+- aws secret manager
+- configurar contas
+- dashboard de monitoramento no cloudwatch
+- deadletter queue?
+- configurar roles corretamente
+
+Eduardo medeiros
+Eduardo Antunes*
+Fabricio oliveira
+
+
+
+Agilidade vale o custo
+
+economia escala
