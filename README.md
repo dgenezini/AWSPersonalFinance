@@ -11,6 +11,8 @@
 
 # Parts
 
-- Repository 1
-- Repository 2
-- Repository 3
+- [Frontend](https://github.com/dgenezini/PersonalFinance.Frontend)
+- [API](https://github.com/dgenezini/PersonalFinance.API)
+- [ImportService](https://github.com/dgenezini/PersonalFinance.ImportService)
+- [Aggregator](https://github.com/dgenezini/PersonalFinance.Aggregator)
+- [ServiceCommon](https://github.com/dgenezini/PersonalFinance.ServiceCommon)

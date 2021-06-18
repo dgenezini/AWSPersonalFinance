@@ -1,18 +1,13 @@
+
 - agregar dados por evento
-- config files de parametros
+- distributed tracing x ray em todos os serviços
+
+- lambda no pipeline do spa para mudar config?
 - sonarlint
 - aws secret manager
-- configurar contas
 - dashboard de monitoramento no cloudwatch
-- deadletter queue?
 - configurar roles corretamente
-
-Eduardo medeiros
-Eduardo Antunes*
-Fabricio oliveira
-
+- unit tests
 
 
 Agilidade vale o custo
-
-economia escala
