@@ -9,12 +9,14 @@ Personal finance control project using Microservices, Serverless and Event-drive
 - DynamoDB
 - DynamoDB Streams
 - SNS
-- Cloudfront + SAM
+- Cloudformation + SAM
 - Cognito
-- Cloudformation
+- Cloudfront
 - CodeArtifact
 - CodePipeline + CodeBuild + CodeDeploy
 - S3 Static Site
+- X-Ray
+- CloudWatch
 
 # Components
 
