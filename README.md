@@ -1,3 +1,5 @@
+Personal finance control project using Microservices, Serverless and Event-driven architectures
+
 # Technologies
 
 - .NET 5.0 + Blazor WebAssembly (Single Page App)
@@ -14,7 +16,7 @@
 - CodePipeline + CodeBuild + CodeDeploy
 - S3 Static Site
 
-# Parts
+# Components
 
 - [Frontend](https://github.com/dgenezini/PersonalFinance.Frontend)
 - [API](https://github.com/dgenezini/PersonalFinance.API)
